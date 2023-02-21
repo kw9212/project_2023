@@ -5,5 +5,5 @@ I have included comments mainly about the functions in each project file (.py).
 In this file, I will document the plan, bugs, and problems that occurred during the testing process.
 
 
-![image](project_2023/project_progress/images/result1.png)
-![image](project_2023/project_progress/images/result2.png))
+![image](./images/result1.png)
+![image](./images/result2.png))
