@@ -3,3 +3,7 @@ This project aims to collaborate on several files to achieve the final goal of
 
 I have included comments mainly about the functions in each project file (.py). 
 In this file, I will document the plan, bugs, and problems that occurred during the testing process.
+
+
+![image](/Users/keunwoo/Desktop/result1)
+![image](/Users/keunwoo/Desktop/result2)
