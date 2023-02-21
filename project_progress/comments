@@ -1,1 +1,5 @@
-This project is to collaborate on several files to achieve the final goal of "find specific e-mails through keywords and notify them through messengers such as slack." I left comments about mainly functions on each project file (.py). And in this file, I'm going to write about the plan, the bugs, and the problems that happened during the testing process here.
+This project aims to collaborate on several files to achieve the final goal of 
+"finding specific emails through keywords and notifying them through messengers such as Slack." 
+
+I have included comments mainly about the functions in each project file (.py). 
+In this file, I will document the plan, bugs, and problems that occurred during the testing process.
