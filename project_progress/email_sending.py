@@ -1,6 +1,7 @@
 # Here we send an email with Python code and read the email address recorded in the excel file
 # to automatically sends a large amount of email (Gmail)
 
+# Using smtplib library
 import smtplib
 from email.mime.text import MIMEText
 
