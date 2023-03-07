@@ -4,18 +4,18 @@
 import smtplib
 from email.mime.text import MIMEText
 
-# Enter your gmail ID here
+# Test 1: Enter your gmail ID here
 # send_email = "GmailID@gmail.com" (The sender has to be gmail address for this project for now)
 send_email = " "
 
-# Enter the 16-digit password generated through the app password
+# Test 2: Enter the 16-digit password generated through the app password
 # send_pwd = "Google Application password"
 send_pwd = " "
 
-#recv_email = "recipient email address"
+# Test 3: recv_email = "recipient email address"
 recv_email = " "
 
-# smtp address for gmail
+# Test 4: smtp address for gmail
 smtp_name = "smtp.gmail.com"
 smtp_port = 587
 
@@ -26,7 +26,7 @@ You can also enter multiple lines.
 
 msg = MIMEText(text)
 
-# msg['Subject'] = "Enter the title of the email"
+# Test 5: msg['Subject'] = "Enter the title of the email"
 msg['Subject'] = "This is the sample"
 msg['From'] = send_email
 msg['To'] = recv_email
