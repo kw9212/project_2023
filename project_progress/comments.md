@@ -5,7 +5,7 @@ I have included comments mainly about the functions in each project file (.py).
 In this file, I will document the plan, bugs, and problems that occurred during the testing process.
 
 
-![image](./images/result1.png)
-![image](./images/result2.png)
+![image](./images/console_result.png)
+![image](./images/sample_email.png)
 
 After several tests, the program was successful in sending an email to the target email address using Python code, with a Gmail address as the sender. Next, we will work on implementing the ability to send emails with attached files.
