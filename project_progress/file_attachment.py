@@ -3,7 +3,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 
-# Enter sender's Google account and PW
+# Enter sender's Google account and PW (The PW should be Google Application password, not account password)
+
 send_email = "Google account@gmial.com"
 send_pwd = "Google PW"
 
