@@ -3,12 +3,12 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 
-# Enter sender's Google account and PW (The PW should be Google Application password, not account password)
-
+# Enter your gmail ID here and application password
+# To get the application password, please read README.md
 send_email = "Google account@gmial.com"
 send_pwd = "Google PW"
 
-# Enter receiver's Google address
+# ex) recv_email = "ks3651@columbia.edu" (The sender has to be gmail address for this project for now)
 recv_email = "Email address"
 
 smtp_name = "smtp.gmail.com"
