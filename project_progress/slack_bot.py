@@ -1,8 +1,10 @@
 import requests
 import json
 
-# This is my url. You need to create and use your own url.
-# To get a slack_webhook_url, please see the readMe.md.
+# This is the URL for the Slack webhook you want to use to send messages.
+# You will need to create and use your own unique webhook URL.
+# A Slack webhook URL is a unique address that allows you to send messages to a specific Slack channel or user.
+# To learn how to create a webhook URL for your Slack workspace, please see the README.md file.
 slack_webhook_url = "https://hooks.slack.com/services/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"
 
 # We will be sending messages to our Slack channel in a way that utilizes webhooks.
