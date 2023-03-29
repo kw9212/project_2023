@@ -1,22 +1,22 @@
-# Here we send an email with Python code and read the email address recorded in the excel file
-# to automatically sends a large amount of email (Gmail)
+# Using Gmail's SMTP server, we send an email from python
+# Author (KeunWoo Song, UNI: ks3651)
 
 # Using smtplib library
 import smtplib
 from email.mime.text import MIMEText
 
-# Test 1: Enter your gmail ID here
+# Enter your gmail ID here
 # send_email = "GmailID@gmail.com" (The sender has to be gmail address for this project for now)
 send_email = " "
 
-# Test 2: Enter the 16-digit password generated through the app password
+# To get the application password, please read README.md
 # send_pwd = "Google Application password"
 send_pwd = " "
 
-# Test 3: recv_email = "recipient email address"
+# Here we need the email address that you want to receive the message at.
 recv_email = " "
 
-# Test 4: smtp address for gmail
+# smtp address for gmail
 smtp_name = "smtp.gmail.com"
 smtp_port = 587
 
@@ -27,7 +27,7 @@ You can also enter multiple lines.
 
 msg = MIMEText(text)
 
-# Test 5: msg['Subject'] = "Enter the title of the email"
+# msg['Subject'] = "Enter the title of the email"
 msg['Subject'] = "This is the sample"
 msg['From'] = send_email
 msg['To'] = recv_email
