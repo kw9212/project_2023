@@ -8,7 +8,7 @@ from email.mime.application import MIMEApplication
 send_email = "Google account@gmial.com"
 send_pwd = "Google PW"
 
-# send_email = "GmailID@gmail.com" (The sender has to be gmail address for this project for now)
+# ex) recv_email = "ks3651@columbia.edu" (The sender has to be gmail address for this project for now)
 recv_email = "Email address"
 
 smtp_name = "smtp.gmail.com"
