@@ -7,7 +7,6 @@ The project involves creating a program that reads gmail and sends notifications
 ## Overview
 This idea came from the challenge of having to sort through many emails every day to find the important ones. Gmail already has a labeling function that classifies emails based on specific email addresses as filters. This project aims to create a function that sends notifications based on keywords using slack and smartphones. There is also potential to expand this project to find information in other ways besides just keywords.
 
-<<<<<<< HEAD
 ### How to generate an application-specific password in Gmail
 In order to use Gmail's SMTP server to send emails from Python, you need to generate an application-specific password instead of using your account password.
 
@@ -34,6 +33,3 @@ In order to get a Slack webhook URL:
 7. Use this URL as your slack_webhook_url in your Python script. 
 
 That's it! You can now use this webhook URL in your Python script to send messages to your Slack channel.
-=======
-
->>>>>>> 073cda3 (modifed README.md)
