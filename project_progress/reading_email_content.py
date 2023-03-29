@@ -12,8 +12,8 @@ imap = imaplib.IMAP4_SSL('imap.gmail.com')
 
 # Use the application password for authentication
 # To obtain an application password, please refer to README.md
-id = 'kwsong9212@gmail.com'
-pw = 'hhinambxxabeqvfo'
+id = 'Google Email address'
+pw = 'application password'
 imap.login(id, pw)
 
 imap.select('INBOX')
