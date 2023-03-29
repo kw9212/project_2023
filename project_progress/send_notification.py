@@ -56,6 +56,7 @@ for mail in reversed(last_email):
 
     # Enter the keyword you want to filter out of the email.
     # If the program finds the keyword, it returns the location. Otherwise, it returns -1.
+    # In this case, the program will find the email that contains "Key" in the content. You can customize the word you want to find in your email.
     if subject_str.find("Key") >= 0:
         slack_send_message = email_from + '\n' + email_date + '\n' + subject_str
         sendSlackWebhook(slack_send_message)
