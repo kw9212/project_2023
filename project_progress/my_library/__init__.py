@@ -1,3 +1,5 @@
+import imaplib
+
 from .email_sending import send_email
 from .file_attachment import attach_file
 from .reading_email_content import read_email_content
