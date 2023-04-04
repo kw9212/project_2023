@@ -6,3 +6,4 @@ my_library.read_email_content()
 my_library.read_email_title()
 my_library.send_notification()
 my_library.sendSlackWebhook("example message")
+
