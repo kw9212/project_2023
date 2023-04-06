@@ -5,19 +5,18 @@
 import smtplib
 from email.mime.text import MIMEText
 
-# Enter your gmail ID here
-# send_email = "GmailID@gmail.com" (The sender has to be gmail address for this project for now)
-send_email = " "
+# Enter your naver ID here
+# send_email = "userid@naver.com" (The sender has to be naver address for this project for now)
+send_email = ""
 
 # To get the application password, please read README.md
-# send_pwd = "Google Application password"
-send_pwd = " "
+send_pwd = ""
 
 # Here we need the email address that you want to receive the message at.
-recv_email = " "
+recv_email = "ks3651@columbia.edu"
 
 # smtp address for gmail
-smtp_name = "smtp.gmail.com"
+smtp_name = "smtp.naver.com"
 smtp_port = 587
 
 text = """
@@ -28,9 +27,9 @@ You can also enter multiple lines.
 msg = MIMEText(text)
 
 # msg['Subject'] = "Enter the title of the email"
-msg['Subject'] = "This is the sample"
-msg['From'] = send_email
-msg['To'] = recv_email
+msg["Subject"] = "This is the sample"
+msg["From"] = send_email
+msg["To"] = recv_email
 print(msg.as_string())
 
 s = smtplib.SMTP(smtp_name, smtp_port)
