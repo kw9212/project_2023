@@ -14,8 +14,8 @@ imap = imaplib.IMAP4_SSL("imap.naver.com")
 
 # Use the application password for authentication
 # To obtain an application password, please refer to README.md
-id = ""
-pw = ""
+id = "kwsong9212"
+pw = "opensource!"
 imap.login(id, pw)
 
 imap.select("INBOX")

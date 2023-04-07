@@ -15,8 +15,8 @@ imap = imaplib.IMAP4_SSL("imap.naver.com")
 # Use the application password for authentication
 # To obtain an application password, please refer to README.md
 # I left this part blank due to security concerns. You need to use your own Naver account and password here.
-id = ""
-pw = ""
+id = "kwsong9212"
+pw = "opensource!"
 imap.login(id, pw)
 
 # Read the first five emails from the inbox.
