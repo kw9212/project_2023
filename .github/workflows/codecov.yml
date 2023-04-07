@@ -5,9 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v2.5.3
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v2.2.2
       with:
         python-version: "3.10"
     - name: Install dependencies
@@ -18,6 +18,6 @@ jobs:
       run: |
         coverage run --source=my_library/ -m unittest discover tests/
     - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v3.12.0
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
