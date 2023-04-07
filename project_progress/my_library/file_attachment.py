@@ -5,9 +5,10 @@ from email.mime.application import MIMEApplication
 
 # Enter your gmail ID here and application password
 # To get the application password, please read README.md
-# I left this part blank due to security concerns. You need to use your own Naver account and password here.
-send_email = ""
-send_pwd = ""
+# This is my account for this project. You can test it with this account
+# but You can also use your own Naver account and password here.
+send_email = "kwsong9212@naver.com"
+send_pwd = "opensource!"
 
 # ex) recv_email = "ks3651@columbia.edu" (The sender has to be gmail address for this project for now)
 recv_email = "ks3651@columba.edu"

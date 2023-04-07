@@ -7,10 +7,10 @@ from email.mime.text import MIMEText
 
 # Enter your naver ID here
 # send_email = "userid@naver.com" (The sender has to be naver address for this project for now)
-send_email = ""
+send_email = "kwsong9212@naver.com"
 
 # To get the application password, please read README.md
-send_pwd = ""
+send_pwd = "opensource!"
 
 # Here we need the email address that you want to receive the message at.
 recv_email = "ks3651@columbia.edu"
