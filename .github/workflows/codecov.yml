@@ -1,9 +1,5 @@
-name: Code Coverage
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+name: CodeCov
+on: [push, pull_request]
 jobs:
   codecov:
     runs-on: ubuntu-latest
