@@ -14,14 +14,14 @@ install:  ## install library
 # LINTS #
 #########
 lint:  ## run static analysis with black and flake8
-	python -m black --check send_email setup.py
-	python -m flake8 send_email setup.py --ignore=E501,F401
+	python -m black --check project_progress/my_library/ setup.py
+	python -m flake8 project_progress/my_library/ setup.py --ignore=E501,F401
 
 # Alias
 lints: lint
 
 format:  ## run autoformatting with black
-	python -m black send_email/ setup.py
+	python -m black project_progress/my_library/ setup.py
 
 # alias
 fix: format
@@ -33,16 +33,16 @@ check:  ## check assets for packaging
 checks: check
 
 annotate:  ## run type checking
-	python -m mypy ./send_email
+	python -m mypy ./project_progress
 
 #########
 # TESTS #
 #########
 test: ## clean and run unit tests
-	python -m pytest -v send_email/test_all.py
+	python -m pytest -v project_progress/my_library/tests/test_all.py
 
 coverage:  ## clean and run unit tests with coverage
-	python -m pytest -v send_email/test_all.py --cov=send_email --cov-branch --cov-fail-under=50 --cov-report term-missing
+	python -m pytest -v project_progress/my_library/tests/test_all.py --cov=send_email --cov-branch --cov-fail-under=50 --cov-report term-missing
 
 # Alias
 tests: test
