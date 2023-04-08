@@ -42,7 +42,7 @@ test: ## clean and run unit tests
 	python -m pytest -v project_progress/my_library/tests/test_all.py
 
 coverage:  ## clean and run unit tests with coverage
-	python -m pytest -v project_progress/my_library/tests/test_all.py --cov=send_email --cov-branch --cov-fail-under=50 --cov-report term-missing
+	python -m pytest -v project_progress/my_library/tests/test_all.py --cov=my_library --cov-branch --cov-fail-under=50 --cov-report term-missing
 
 # Alias
 tests: test
