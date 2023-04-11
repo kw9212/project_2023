@@ -1,5 +1,5 @@
 import unittest
-from my_library import (
+from project_progress import (
     send_email,
     attach_file,
     read_email_content,
