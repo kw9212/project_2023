@@ -8,9 +8,7 @@ import json
 # You will need to create and use your own unique webhook URL.
 # A Slack webhook URL is a unique address that allows you to send messages to a specific Slack channel or user.
 # To learn how to create a webhook URL for your Slack workspace, please see the README.md file.
-slack_webhook_url = (
-    "https://hooks.slack.com/services/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"
-)
+slack_webhook_url = "https://hooks.slack.com/services/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"
 
 
 def sendSlackWebhook(strText):
@@ -57,7 +55,8 @@ for mail in reversed(last_email):
 
     # Enter the keyword you want to filter out of the email.
     # If the program finds the keyword, it returns the location. Otherwise, it returns -1.
-    # In this case, the program will find the email that contains "Key" in the content. You can customize the word you want to find in your email.
+    # In this case, the program will find the email that contains "Key" in the content.
+    # You can customize the word you want to find in your email.
     if subject_str.find("Thank you") >= 0:
         slack_send_message = email_from + "\n" + email_date + "\n" + subject_str
         sendSlackWebhook(slack_send_message)

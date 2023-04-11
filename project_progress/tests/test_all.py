@@ -23,15 +23,11 @@ class TestMyLibrary(unittest.TestCase):
     # Unit test 2
     def test_attach_file(self):
         # Test attaching a file to an email
-        result = attach_file(
-            "kwsong9212@naver.com", "test subject", "test message", "sample_file.txt"
-        )
+        result = attach_file("kwsong9212@naver.com", "test subject", "test message", "sample_file.txt")
         self.assertTrue(result)
 
         # Test attaching a non-existent file to an email
-        result = attach_file(
-            "example@naver.com", "test subject", "test message", "non_existent_file.txt"
-        )
+        result = attach_file("example@naver.com", "test subject", "test message", "non_existent_file.txt")
         self.assertFalse(result)
 
     # Unit test 3
@@ -57,9 +53,7 @@ class TestMyLibrary(unittest.TestCase):
     # Unit test 5
     def test_send_notification(self):
         # Test sending a notification
-        result = send_notification(
-            "https://hooks.slack.com/services/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"
-        )
+        result = send_notification("https://hooks.slack.com/services/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")
         self.assertTrue(result)
 
     # Unit test 6
