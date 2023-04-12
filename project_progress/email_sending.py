@@ -1,23 +1,15 @@
-# Using Gmail's SMTP server, we send an email from python
-# Author (KeunWoo Song, UNI: ks3651)
-
-# Using smtplib library
-import smtplib
+import subprocess
+import time
 from email.mime.text import MIMEText
+from nullsmtp import SMTP
 
-# Enter your naver ID here
-# send_email = "userid@naver.com" (The sender has to be naver address for this project for now)
-send_email = "kwsong9212@naver.com"
+# Start the Greenmail server
+greenmail_process = subprocess.Popen(["java", "-jar", "greenmail-standalone-2.1.0-alpha-1.jar", "-Dgreenmail.setup.test.smtp"])
+time.sleep(5)  # wait for the server to start up
 
-# To get the application password, please read README.md
-send_pwd = "opensource!"
-
-# Here we need the email address that you want to receive the message at.
-recv_email = "ks3651@columbia.edu"
-
-# smtp address for gmail
-smtp_name = "smtp.naver.com"
-smtp_port = 587
+# This is the email for testing.
+send_email = "mytestemail@mailinator.com"
+recv_email = "mytestemail@mailinator.com"
 
 text = """
 Write down contents of your mail here.
@@ -32,8 +24,9 @@ msg["From"] = send_email
 msg["To"] = recv_email
 print(msg.as_string())
 
-s = smtplib.SMTP(smtp_name, smtp_port)
-s.starttls()
-s.login(send_email, send_pwd)
+s = SMTP("localhost", 3025)
 s.sendmail(send_email, recv_email, msg.as_string())
 s.quit()
+
+# Stop the Greenmail server
+greenmail_process.kill()

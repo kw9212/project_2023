@@ -22,5 +22,6 @@ def sendSlackWebhook(strText):
         return "error"
 
 
-# If I receive this message via Slack, it will confirm that the program is functioning properly.
+# When you test your file with your incoming webhook url and you receive this message via Slack,
+# it means that the program is functioning properly.
 print(sendSlackWebhook("Hello, this is a message from python"))

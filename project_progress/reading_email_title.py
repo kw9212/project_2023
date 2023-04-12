@@ -1,23 +1,20 @@
+import subprocess
+import time
 import imaplib
 import email
 from email import policy
-
 
 def find_encoding_info(txt):
     info = email.header.decode_header(txt)
     subject, encode = info[0]
     return subject, encode
 
+# Start the Greenmail server
+greenmail_process = subprocess.Popen(["java", "-jar", "greenmail-standalone-2.1.0-alpha-1.jar", "-Dgreenmail.setup.test.imap"])
+time.sleep(5)  # wait for the server to start up
 
-# Login to naver account
-imap = imaplib.IMAP4_SSL("imap.naver.com")
-
-# Use the application password for authentication
-# To obtain an application password, please refer to README.md
-# I left this part blank due to security concerns. You need to use your own Naver account and password here.
-id = "kwsong9212"
-pw = "opensource!"
-imap.login(id, pw)
+# Login to Greenmail server
+imap = imaplib.IMAP4("localhost", 3143)
 
 # Read the first five emails from the inbox.
 # You can adjust the number of emails to read by changing the number in [-5:]
@@ -42,3 +39,6 @@ for mail in reversed(last_email):
 
 imap.close()
 imap.logout()
+
+# Stop the Greenmail server
+greenmail_process.kill()

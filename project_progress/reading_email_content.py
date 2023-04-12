@@ -1,3 +1,5 @@
+import subprocess
+import time
 import imaplib
 import email
 from email import policy
@@ -8,15 +10,12 @@ def find_encoding_info(txt):
     subject, encode = info[0]
     return subject, encode
 
+# Start the Greenmail server
+greenmail_process = subprocess.Popen(["java", "-jar", "greenmail-standalone-2.1.0-alpha-1.jar", "-Dgreenmail.setup.test.imap"])
+time.sleep(5)  # wait for the server to start up
 
-# Login to naver account
-imap = imaplib.IMAP4_SSL("imap.naver.com")
-
-# Use the application password for authentication
-# To obtain an application password, please refer to README.md
-id = "kwsong9212"
-pw = "opensource!"
-imap.login(id, pw)
+# Login to Greenmail server
+imap = imaplib.IMAP4("localhost", 3143)
 
 imap.select("INBOX")
 resp, data = imap.uid("search", None, "All")
@@ -53,3 +52,6 @@ for mail in reversed(last_email):
 
 imap.close()
 imap.logout()
+
+# Stop the Greenmail server
+greenmail_process.kill()

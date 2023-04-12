@@ -3,6 +3,16 @@ import email
 from email import policy
 import requests
 import json
+import subprocess
+import time
+
+# Start the Greenmail server
+greenmail_process = subprocess.Popen(["java", "-jar", "greenmail-standalone-2.1.0-alpha-1.jar", "-Dgreenmail.setup.test.smtp"])
+time.sleep(5)  # wait for the server to start up
+
+# This is the email for testing.
+send_email = "mytestemail@mailinator.com"
+recv_email = "mytestemail@mailinator.com"
 
 # This is the URL for the Slack webhook you want to use to send messages.
 # You will need to create and use your own unique webhook URL.
@@ -30,13 +40,7 @@ def find_encoding_info(txt):
     return subject, encode
 
 
-imap = imaplib.IMAP4_SSL("imap.naver.com")
-
-# Use the application password for authentication
-# To obtain an application password, please refer to README.md
-id = "kwsong9212"
-pw = "opensource!"
-imap.login(id, pw)
+imap = imaplib.IMAP4_SSL("localhost", 3025)
 
 imap.select("INBOX")
 resp, data = imap.uid("search", None, "All")
@@ -64,3 +68,6 @@ for mail in reversed(last_email):
 
 imap.close()
 imap.logout()
+
+# Stop the Greenmail server
+greenmail_process.kill()

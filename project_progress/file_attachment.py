@@ -1,20 +1,20 @@
-import smtplib
+import subprocess
+import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
+from nullsmtp import SMTP
 
-# Enter your gmail ID here and application password
-# To get the application password, please read README.md
-# This is my account for this project. You can test it with this account
-# but You can also use your own Naver account and password here.
-send_email = "kwsong9212@naver.com"
-send_pwd = "opensource!"
+# Start the Greenmail server
+greenmail_process = subprocess.Popen(["java", "-jar", "greenmail-standalone-2.1.0-alpha-1.jar", "-Dgreenmail.setup.test.smtp"])
+time.sleep(5)  # wait for the server to start up
 
-# ex) recv_email = "ks3651@columbia.edu" (The sender has to be gmail address for this project for now)
-recv_email = "ks3651@columba.edu"
+# This is the email for testing.
+send_email = "mytestemail@mailinator.com"
+recv_email = "mytestemail@mailinator.com"
 
-smtp_name = "smtp.naver.com"
-smtp_port = 587
+smtp_name = "localhost"
+smtp_port = 3025
 
 msg = MIMEMultipart()
 
@@ -30,7 +30,7 @@ contentPart = MIMEText(text)
 msg.attach(contentPart)
 
 # Specify the path to the attachment
-etc_file_path = r"/Users/keunwoo/project-proposals-s2023/project_2023/project_progress/my_library/sample_file.txt"
+etc_file_path = r"project_2023/project_progress/sample_file.txt"
 
 # reading the name of attaching file and attach it as a name of "filename"
 with open(etc_file_path, "rb") as f:
@@ -39,8 +39,9 @@ with open(etc_file_path, "rb") as f:
     msg.attach(etc_part)
 
 # sending an email
-s = smtplib.SMTP(smtp_name, smtp_port)
-s.starttls()
-s.login(send_email, send_pwd)
+s = SMTP(smtp_name, smtp_port)
 s.sendmail(send_email, recv_email, msg.as_string())
 s.quit()
+
+# Stop the Greenmail server
+greenmail_process.kill()
