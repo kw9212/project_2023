@@ -6,8 +6,6 @@ from .slack_bot import sendSlackWebhook
 current_dir = os.path.dirname(os.path.abspath(__file__))
 emails_path = os.path.join(current_dir, "emails.json")
 
-with open(emails_path, "r") as file:
-
 
 def find_encoding_info(txt):
     info = email.header.decode_header(txt)
