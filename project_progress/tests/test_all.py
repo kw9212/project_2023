@@ -1,3 +1,4 @@
+import os
 import imaplib
 import json
 from unittest.mock import patch
@@ -8,8 +9,10 @@ from project_progress.reading_email_content import read_email_contents
 from project_progress.slack_bot import sendSlackWebhook
 
 
-# Load sample emails from emails.json
-with open("emails.json", "r") as file:
+current_dir = os.path.dirname(os.path.abspath(__file__))
+emails_path = os.path.join(current_dir, "..", "emails.json")
+
+with open(emails_path, "r") as file:
     sample_emails = json.load(file)
 
 
