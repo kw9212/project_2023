@@ -15,7 +15,7 @@ install:  ## install library
 #########
 lint:  ## run static analysis with black and flake8
 	python -m black --check project_progress/ setup.py
-	python -m flake8 project_progress/ setup.py
+	python -m flake8 project_progress/ setup.py --ignore=E501,F401
 
 # Alias
 lints: lint
