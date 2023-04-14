@@ -10,7 +10,7 @@ def send_email(email_info):
 
     msg["Subject"] = email_info["Subject"]
     msg["From"] = email_info["From"]
-    msg["To"] = email_info["recv_email"]
+    msg["To"] = email_info["To"]
 
     smtp_name = email_info["smtp_name"]
     smtp_port = email_info["smtp_port"]
