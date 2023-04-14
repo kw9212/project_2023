@@ -29,5 +29,6 @@ for email_message in emails:
     # You can customize the word you want to find in your email.
     if subject_str.find("Thank you") >= 0:
         slack_send_message = email_from + "\n" + email_date + "\n" + subject_str
-        sendSlackWebhook(slack_send_message)
+        webhook_url = os.environ.get("SLACK_WEBHOOK_URL", "https://example.com/mock_url")
+        sendSlackWebhook(slack_send_message, webhook_url)
         print(slack_send_message)
