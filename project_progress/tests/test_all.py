@@ -56,7 +56,7 @@ def create_imap_object(imap_config):
 def test_read_email_titles(mock_imap):
     imap = create_imap_object(sample_imap_config)
     sample_raw_email = b"Subject: Test email\r\n\r\nThis is a test email."
-    mock_imap.return_value.uid.return_value = ('OK', [sample_raw_email])
+    mock_imap.return_value.uid.return_value = ('OK', [b"1 (BODY[] " + sample_raw_email + b")"])
     read_email_titles(imap)
 
 
@@ -64,7 +64,7 @@ def test_read_email_titles(mock_imap):
 def test_read_email_contents(mock_imap):
     imap = create_imap_object(sample_imap_config)
     sample_raw_email = b"Subject: Test email\r\n\r\nThis is a test email."
-    mock_imap.return_value.uid.return_value = ('OK', [sample_raw_email])
+    mock_imap.return_value.uid.return_value = ('OK', [b"1 (BODY[] " + sample_raw_email + b")"])
     read_email_contents(imap)
 
 

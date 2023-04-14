@@ -4,13 +4,15 @@
     "To": "receiver@example.com",
     "Date": "Mon, 4 Apr 2023 10:00:00 +0000",
     "Subject": "Thank you for your help!",
-    "text": "Hello, I just wanted to say thank you for all your help."
+    "text": "Hello, I just wanted to say thank you for all your help.",
+    "smtp_name": "smtp.example.com"
   },
   {
     "From": "another@example.com",
     "To": "receiver@example.com",
     "Date": "Tue, 5 Apr 2023 11:00:00 +0000",
     "Subject": "A different email",
-    "text": "This is an email about something else."
+    "text": "This is an email about something else.",
+    "smtp_name": "smtp.example.com"
   }
 ]
