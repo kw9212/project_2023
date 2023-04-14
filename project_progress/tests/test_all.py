@@ -22,7 +22,7 @@ def test_send_email(mock_smtp):
         send_email(email_info)
 
 
-def test_send_email_with_attachment(mock_smtp):
+def test_send_email_with_attachment(mock_smtplib):
     for email_info in sample_emails:
         send_email_with_attachment(
             "sender@example.com",
@@ -53,14 +53,14 @@ def create_imap_object(imap_config):
 @patch("imaplib.IMAP4_SSL")
 def test_read_email_titles(mock_imap):
     imap = create_imap_object(sample_imap_config)
-    mock_imap.return_value.uid.return_value = ('OK', ['1 2 3 4 5'])
+    mock_imap.return_value.uid.return_value = ('OK', [b'1 2 3 4 5'])
     read_email_titles(imap)
 
 
 @patch("imaplib.IMAP4_SSL")
 def test_read_email_contents(mock_imap):
     imap = create_imap_object(sample_imap_config)
-    mock_imap.return_value.uid.return_value = ('OK', ['1 2 3 4 5'])
+    mock_imap.return_value.uid.return_value = ('OK', [b'1 2 3 4 5'])
     read_email_contents(imap)
 
 
