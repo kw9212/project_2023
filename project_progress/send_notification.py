@@ -1,6 +1,6 @@
 import json
 import email
-from slack_bot import sendSlackWebhook
+from .slack_bot import sendSlackWebhook
 
 
 def find_encoding_info(txt):
