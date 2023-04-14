@@ -14,7 +14,7 @@ def find_encoding_info(txt):
 
 
 # Read email data from the local JSON file
-with open("emails.json", "r") as file:
+with open(emails_path, "r") as file:
     emails = json.load(file)
 
 # Process the emails
