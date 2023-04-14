@@ -29,7 +29,7 @@ def test_send_email_with_attachment(mock_smtp):
             email_info["To"],
             email_info["Subject"],
             email_info["text"],
-            "sample_file.txt"
+            "sample_file.txt",
         )
 
 
@@ -37,7 +37,7 @@ sample_imap_config = {
     "imap_name": "imap.example.com",
     "imap_port": 993,
     "email": "your_email@example.com",
-    "password": "your_password"
+    "password": "your_password",
 }
 
 
@@ -65,6 +65,7 @@ def test_read_email_contents(mock_imap):
 def test_sendSlackWebhook(mock_post):
     webhook_url = "https://hooks.slack.com/services/your/webhook/url"
     sendSlackWebhook(webhook_url, "Test message")
+
 
 @patch("smtplib.SMTP")
 @patch("imaplib.IMAP4_SSL")
