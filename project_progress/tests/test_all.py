@@ -1,81 +1,85 @@
-import unittest
-import os
-from project_progress import (
-    send_email,
-    attach_file,
-    read_email_content,
-    read_email_title,
-    send_notification,
-    sendSlackWebhook,
-)
+import imaplib
+import json
+from unittest.mock import patch
+from project_progress.email_sending import send_email
+from project_progress.file_attachment import send_email_with_attachment
+from project_progress.reading_email_title import read_email_titles
+from project_progress.reading_email_content import read_email_contents
+from project_progress.slack_bot import sendSlackWebhook
 
 
-class TestMyLibrary(unittest.TestCase):
-    # Unit test 1
-    def test_send_email(self):
-        # Test sending an email to a valid email address
-        result = send_email("mytestemail@mailinator.com", "test subject", "test message")
-        self.assertTrue(result)
-
-        # Test sending an email to an invalid email address
-        result = send_email("invalidemail", "test subject", "test message")
-        self.assertFalse(result)
-
-    # Unit test 2
-    def test_attach_file(self):
-        # Test attaching a file to an email
-        result = attach_file("mytestemail@mailinator.com", "test subject", "test message", "sample_file.txt")
-        self.assertTrue(result)
-
-        # Test attaching a non-existent file to an email
-        result = attach_file("example@naver.com", "test subject", "test message", "non_existent_file.txt")
-        self.assertFalse(result)
-
-    # Unit test 3
-    def test_read_email_content(self):
-        # Test reading email content from a valid email address
-        result = read_email_content("mytestemail@mailinator.com")
-        self.assertIsNotNone(result)
-
-        # Test reading email content from an invalid email address
-        result = read_email_content("invalidemail")
-        self.assertIsNone(result)
-
-    # Unit test 4
-    def test_read_email_title(self):
-        # Test reading email title from a valid email address
-        result = read_email_title("mytestemail@mailinator.com")
-        self.assertIsNotNone(result)
-
-        # Test reading email title from an invalid email address
-        result = read_email_title("invalidemail")
-        self.assertIsNone(result)
-
-    # Unit test 5
-    def test_send_notification(self):
-        # Test sending a notification (please use your own slack_webhook to see the result)
-        result = send_notification("https://hooks.slack.com/services/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")
-        self.assertTrue(result)
-
-    # Unit test 6
-    def test_sendSlackWebhook(self):
-        # Test sending a Slack webhook
-        result = sendSlackWebhook("test message")
-        self.assertTrue(result)
-
-    # An integration Test between sending an email and attaching a file.
-    def test_send_email_with_attachment(self):
-        # Test sending an email with an attachment
-        email_address = "mytestemail@mailinator.com"
-        subject = "test subject"
-        message = "test message"
-        file_path = "project_2023/project_progress//sample_file.txt"
-
-        # Send the email with attachment
-        result = send_email_with_attachment(email_address, subject, message, file_path)
-
-        self.assertTrue(result)
+# Load sample emails from emails.json
+with open("emails.json", "r") as file:
+    sample_emails = json.load(file)
 
 
-if __name__ == "__main__":
-    unittest.main()
+@patch("smtplib.SMTP")
+def test_send_email(mock_smtp):
+    for email_info in sample_emails:
+        send_email(email_info)
+
+
+def test_send_email_with_attachment(mock_smtp):
+    for email_info in sample_emails:
+        send_email_with_attachment(
+            "sender@example.com",
+            "your_password",
+            "smtp.example.com",
+            587,
+            email_info["To"],
+            email_info["Subject"],
+            email_info["text"],
+            "sample_file.txt"
+        )
+
+
+sample_imap_config = {
+    "imap_name": "imap.example.com",
+    "imap_port": 993,
+    "email": "your_email@example.com",
+    "password": "your_password"
+}
+
+
+def create_imap_object(imap_config):
+    imap = imaplib.IMAP4_SSL(imap_config["imap_name"], imap_config["imap_port"])
+    imap.login(imap_config["email"], imap_config["password"])
+    return imap
+
+
+@patch("imaplib.IMAP4_SSL")
+def test_read_email_titles(mock_imap):
+    imap = create_imap_object(sample_imap_config)
+    mock_imap.return_value.uid.return_value = ('OK', ['1 2 3 4 5'])
+    read_email_titles(imap)
+
+
+@patch("imaplib.IMAP4_SSL")
+def test_read_email_contents(mock_imap):
+    imap = create_imap_object(sample_imap_config)
+    mock_imap.return_value.uid.return_value = ('OK', ['1 2 3 4 5'])
+    read_email_contents(imap)
+
+
+@patch("requests.post")
+def test_sendSlackWebhook(mock_post):
+    webhook_url = "https://hooks.slack.com/services/your/webhook/url"
+    sendSlackWebhook(webhook_url, "Test message")
+
+@patch("smtplib.SMTP")
+@patch("imaplib.IMAP4_SSL")
+def test_email_integration(mock_smtp, mock_imap):
+    # Send an email
+    sample_email = sample_emails[0]
+    send_email(sample_email)
+
+    # Create IMAP object
+    imap = create_imap_object(sample_imap_config)
+
+    # Read email titles and check if the sent email's title is in the list
+    titles = read_email_titles(imap)
+    assert any(sample_email["Subject"] in title for title in titles)
+
+    # Read email contents and check if the sent email's content is in the list
+    contents = read_email_contents(imap)
+    assert any(sample_email["text"] in content for content in contents)

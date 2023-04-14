@@ -1,32 +1,22 @@
-import subprocess
-import time
+# Using Gmail's SMTP server, we send an email from python
+# Author (KeunWoo Song, UNI: ks3651)
+
+import smtplib
 from email.mime.text import MIMEText
-from nullsmtp import SMTP
 
-# Start the Greenmail server
-greenmail_process = subprocess.Popen(["java", "-jar", "greenmail-standalone-2.1.0-alpha-1.jar", "-Dgreenmail.setup.test.smtp"])
-time.sleep(5)  # wait for the server to start up
 
-# This is the email for testing.
-send_email = "mytestemail@mailinator.com"
-recv_email = "mytestemail@mailinator.com"
+def send_email(email_info):
+    msg = MIMEText(email_info["text"])
 
-text = """
-Write down contents of your mail here.
-You can also enter multiple lines.
-"""
+    msg["Subject"] = email_info["Subject"]
+    msg["From"] = email_info["send_email"]
+    msg["To"] = email_info["recv_email"]
 
-msg = MIMEText(text)
+    smtp_name = email_info["smtp_name"]
+    smtp_port = email_info["smtp_port"]
 
-# msg['Subject'] = "Enter the title of the email"
-msg["Subject"] = "This is the sample"
-msg["From"] = send_email
-msg["To"] = recv_email
-print(msg.as_string())
-
-s = SMTP("localhost", 3025)
-s.sendmail(send_email, recv_email, msg.as_string())
-s.quit()
-
-# Stop the Greenmail server
-greenmail_process.kill()
+    s = smtplib.SMTP(smtp_name, smtp_port)
+    s.starttls()
+    s.login(email_info["send_email"], email_info["send_pwd"])
+    s.sendmail(email_info["send_email"], email_info["recv_email"], msg.as_string())
+    s.quit()

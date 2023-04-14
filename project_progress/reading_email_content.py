@@ -1,6 +1,3 @@
-import subprocess
-import time
-import imaplib
 import email
 from email import policy
 
@@ -10,48 +7,39 @@ def find_encoding_info(txt):
     subject, encode = info[0]
     return subject, encode
 
-# Start the Greenmail server
-greenmail_process = subprocess.Popen(["java", "-jar", "greenmail-standalone-2.1.0-alpha-1.jar", "-Dgreenmail.setup.test.imap"])
-time.sleep(5)  # wait for the server to start up
 
-# Login to Greenmail server
-imap = imaplib.IMAP4("localhost", 3143)
+def read_email_contents(imap, num_emails=5):
+    email_contents = []
 
-imap.select("INBOX")
-resp, data = imap.uid("search", None, "All")
-all_email = data[0].split()
-last_email = all_email[-5:]
+    imap.select("INBOX")
+    resp, data = imap.uid("search", None, "All")
+    all_email = data[0].split()
+    last_email = all_email[-num_emails:]
 
-for mail in reversed(last_email):
-    result, data = imap.uid("fetch", mail, "(RFC822)")
-    raw_email = data[0][1]
-    email_message = email.message_from_bytes(raw_email, policy=policy.default)
+    for mail in reversed(last_email):
+        result, data = imap.uid("fetch", mail, "(RFC822)")
+        raw_email = data[0][1]
+        email_message = email.message_from_bytes(raw_email, policy=policy.default)
 
-    print("=" * 70)
-    print("FROM:", email_message["From"])
-    print("SENDER:", email_message["Sender"])
-    print("TO:", email_message["To"])
-    print("DATE:", email_message["Date"])
-    subject, encode = find_encoding_info(email_message["Subject"])
-    print("SUBJECT:", subject)
+        subject, encode = find_encoding_info(email_message["Subject"])
 
-    # Read the content of the email and print it. Only save the content if the message type is text/plain.
-    # Program does not read attachments, only text/plain emails are saved.
-    print("[CONTENT]")
-    message = ""
-    if email_message.is_multipart():
-        for part in email_message.get_payload():
-            if part.get_content_type() == "text/plain":
-                bytes = part.get_payload(decode=True)
-                encode = part.get_content_charset()
-                message = message + str(bytes, encode)
+        message = ""
+        if email_message.is_multipart():
+            for part in email_message.get_payload():
+                if part.get_content_type() == "text/plain":
+                    bytes = part.get_payload(decode=True)
+                    encode = part.get_content_charset()
+                    message = message + str(bytes, encode)
 
-    print(message)
-    # Separate each email with a line of '=' characters.
-    print("=" * 70)
+        email_contents.append(
+            (
+                email_message["From"],
+                email_message["Sender"],
+                email_message["To"],
+                email_message["Date"],
+                subject,
+                message,
+            )
+        )
 
-imap.close()
-imap.logout()
-
-# Stop the Greenmail server
-greenmail_process.kill()
+    return email_contents
