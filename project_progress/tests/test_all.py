@@ -56,7 +56,8 @@ def create_imap_object(imap_config):
 def test_read_email_titles(mock_imap):
     imap = create_imap_object(sample_imap_config)
     sample_raw_email = b"Subject: Test email\r\n\r\nThis is a test email."
-    mock_imap.return_value.uid.return_value = ('OK', [(b'1', b'BODY[]', sample_raw_email)])
+    mock_imap.return_value.uid.return_value.search.return_value = ('OK', [b'1 2 3 4 5'])
+    mock_imap.return_value.uid.return_value.fetch.return_value = ('OK', [(b'1', b'BODY[]', sample_raw_email)])
     read_email_titles(imap)
 
 
@@ -64,7 +65,8 @@ def test_read_email_titles(mock_imap):
 def test_read_email_contents(mock_imap):
     imap = create_imap_object(sample_imap_config)
     sample_raw_email = b"Subject: Test email\r\n\r\nThis is a test email."
-    mock_imap.return_value.uid.return_value = ('OK', [(b'1', b'BODY[]', sample_raw_email)])
+    mock_imap.return_value.uid.return_value.search.return_value = ('OK', [b'1 2 3 4 5'])
+    mock_imap.return_value.uid.return_value.fetch.return_value = ('OK', [(b'1', b'BODY[]', sample_raw_email)])
     read_email_contents(imap)
 
 
@@ -80,6 +82,10 @@ def test_email_integration(mock_smtp, mock_imap):
     # Send an email
     sample_email = sample_emails[0]
     send_email(sample_email)
+
+    # Set up the IMAP mock to return a raw email
+    sample_raw_email = b"Subject: " + sample_email["Subject"].encode() + b"\r\n\r\n" + sample_email["text"].encode()
+    mock_imap.return_value.uid.return_value = ('OK', [b"1 (BODY[] " + sample_raw_email + b")"])
 
     # Create IMAP object
     imap = create_imap_object(sample_imap_config)
