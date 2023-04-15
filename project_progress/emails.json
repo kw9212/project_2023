@@ -1,15 +1,14 @@
 [
   {
-    "send_email": "sender@example.com",
-    "send_pwd": "your_password",
+    "From": "sender@example.com",
     "To": "receiver@example.com",
-    "Subject": "Thank you for your help!",
     "Date": "Mon, 4 Apr 2023 10:00:00 +0000",
-    "text": "I appreciate your support!"
+    "Subject": "Thank you for your help!",
+    "text": "Hello, I just wanted to say thank you for all your help.",
+    "smtp_name": "smtp.example.com"
   },
   {
-    "send_email": "another@example.com",
-    "send_pwd": "your_password",
+    "From": "another@example.com",
     "To": "receiver@example.com",
     "Date": "Tue, 5 Apr 2023 11:00:00 +0000",
     "Subject": "A different email",
