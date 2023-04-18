@@ -18,11 +18,13 @@ I appreciate your interest in contributing to the Email Tracking System! This do
 
 1. Create a new branch for your changes: `git checkout -b my-feature-branch`
 2. Make your changes and commit them to your branch with a descriptive commit message.
-3. Make sure to run the tests and ensure they pass: `make tests`
-4. Check that the code adheres to our coding style by running the linter: `make lint`
-5. If you added any new features, please add tests to cover them.
-6. Check code coverage: `make coverage`
-7. Run static analysis and auto-formatting: `make lint`, `make black`
+
+## Before Opening a Pull Request
+
+1. Make sure to run the tests and ensure they pass: `make tests`
+2. Check that the code adheres to our coding style by running the linter: `make lint`
+3. Check code coverage: `make coverage`
+4. Run auto-formatting: `make black`
 
 ## Adding New Features
 
