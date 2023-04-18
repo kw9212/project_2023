@@ -10,6 +10,7 @@ This project is a pure python project using modern tooling. It uses a `Makefile`
 - `make coverage`: run automated tests with `pytest` and collect coverage information
 - `make dist`: package library for distribution
 
+
 If you would like to use the library with your personal account and Slack URL, here are instructions on how to set it up.
 
 ### How to generate an application-specific password in Gmail
