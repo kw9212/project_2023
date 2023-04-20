@@ -21,7 +21,7 @@ pip install project_progress
 
 To use the Project Progress Tracking System:
 
-1. Configure your email and Slack settings in the `config.json` file.
+1. Configure your email and Slack settings in the `email.json` file.
 2. Import the library into your Python script:
 
     ```python
