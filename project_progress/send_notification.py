@@ -8,6 +8,12 @@ emails_path = os.path.join(current_dir, "emails.json")
 
 
 def find_encoding_info(txt):
+    """
+    Find encoding information for a given text.
+
+    :param txt: The text to find encoding information for (str)
+    :return: A tuple containing the decoded subject and the encoding (tuple)
+    """
     info = email.header.decode_header(txt)
     subject, encode = info[0]
     return subject, encode

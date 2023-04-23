@@ -1,3 +1,11 @@
+"""
+A package for working with email notifications and integrations.
+
+This package provides functions for sending emails, attaching files,
+reading email titles and contents, sending notifications based on
+specific email criteria, and interacting with the Slack API through
+webhooks.
+"""
 from .email_sending import *
 from .file_attachment import *
 from .reading_email_content import *
