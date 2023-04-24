@@ -3,7 +3,7 @@ The project involves creating a program that reads gmail and sends notifications
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![](https://img.shields.io/github/issues/kw9212/project_2023)
-[![Build Status](https://github.com/kw9212/project_2023/workflows/Build%20Status/badge.svg?branch=main)](https://github.com/kw9212/project_2023/actions)
+[![Build Status](https://github.com/kw9212/project_2023/workflows/python-app/badge.svg?branch=main)](https://github.com/kw9212/project_2023/actions)
 ![](https://github.com/kw9212/project_2023/actions/workflows/build.yml/badge.svg)
 [![codecov](https://codecov.io/github/kw9212/project_2023/branch/main/graph/badge.svg?token=05c337ef-226f-41c3-b136-0fe9842b5192)](https://app.codecov.io/gh/kw9212/project_2023)
 [![PyPI](https://img.shields.io/pypi/v/project-2023)](https://pypi.org/project/project-2023/)
