@@ -1,6 +1,6 @@
 imapclient==2.2.0
 requests==2.26.0
-slack-sdk==3.11.1
+slack-sdk>=3.15.2
 slack-bolt==1.13.0
 black>=23.1.0
 flake8>=6.0.0

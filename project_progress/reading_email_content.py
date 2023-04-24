@@ -3,12 +3,25 @@ from email import policy
 
 
 def find_encoding_info(txt):
+    """
+    Find encoding information for a given text.
+
+    :param txt: The text to find encoding information for (str)
+    :return: A tuple containing the decoded subject and the encoding (tuple)
+    """
     info = email.header.decode_header(txt)
     subject, encode = info[0]
     return subject, encode
 
 
 def read_email_contents(imap, num_emails=5):
+    """
+    Read the email contents from an IMAP mailbox.
+
+    :param imap: An IMAP object connected to the mailbox (IMAP object)
+    :param num_emails: The number of email contents to read (int), default is 5
+    :return: A list of email content information (list)
+    """
     email_contents = []
 
     imap.select("INBOX")

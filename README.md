@@ -6,6 +6,8 @@ The project involves creating a program that reads gmail and sends notifications
 ![](https://github.com/kw9212/project_2023/issues)
 [![codecov](https://codecov.io/github/kw9212/project_2023/branch/main/graph/badge.svg?token=05c337ef-226f-41c3-b136-0fe9842b5192)](https://app.codecov.io/gh/kw9212/project_2023)
 [![PyPI](https://img.shields.io/pypi/v/project-2023)](https://pypi.org/project/project-2023/)
+[![Documentation Status](https://readthedocs.org/projects/project-2023/badge/?version=latest)](https://project-2023.readthedocs.io/en/latest/?badge=latest)
+
 
 # Overview
 This idea came from the challenge of having to sort through many emails every day to find the important ones. Gmail already has a labeling function that classifies emails based on specific email addresses as filters. This project aims to create a function that sends notifications based on keywords using slack and smartphones. There is also potential to expand this project to find information in other ways besides just keywords.
