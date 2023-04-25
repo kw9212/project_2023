@@ -10,33 +10,34 @@ The project involves creating a program that reads gmail and sends notifications
 [![Documentation Status](https://readthedocs.org/projects/project-2023/badge/?version=latest)](https://project-2023.readthedocs.io/en/latest/?badge=latest)
 
 
-# Overview
+Overview
+--------
+
 This idea came from the challenge of having to sort through many emails every day to find the important ones. Gmail already has a labeling function that classifies emails based on specific email addresses as filters. This project aims to create a function that sends notifications based on keywords using slack and smartphones. There is also potential to expand this project to find information in other ways besides just keywords.
 
-## Installation
+Installing
+----------
 
-Install the library using pip:
-
-```bash
-pip install project_progress
+```python
+    pip install project_progress
 ```
+Dependencies
+------------
 
-## Usage
+- slack_sdk
 
-To use the Project Progress Tracking System:
+Usage
+-----
+```python
 
-1. Configure your email and Slack settings in the `emails.json` file.
-2. Import the library into your Python script:
+    from project_progress import read_email_titles, sendSlackWebhook
 
-    ```python
-    from project_progress import send_email, send_slack_notification
-    ```
+    email_titles = read_email_titles()
+    keyword = "important"
 
-3. Use the `send_email` and `send_slack_notification` functions to send notifications:
-
-    ```python
-    send_email(subject="Task Update", message="The task is now complete.")
-    send_slack_notification(text="The task is now complete.")
-    ```
+    for title in email_titles:
+        if keyword in title:
+            sendSlackWebhook("Keyword found in email title: " + title, webhook_url)
+```
 
 For more detailed usage instructions and available options, please refer to the [documentation](./documentation.md).
