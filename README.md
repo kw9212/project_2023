@@ -18,10 +18,9 @@ This idea came from the challenge of having to sort through many emails every da
 Installing
 ----------
 
-.. code-block:: bash
-
+```python
     pip install project_progress
-
+```
 Dependencies
 ------------
 
@@ -29,8 +28,7 @@ Dependencies
 
 Usage
 -----
-
-.. code-block:: python
+```python
 
     from project_progress import read_email_titles, sendSlackWebhook
 
@@ -40,6 +38,6 @@ Usage
     for title in email_titles:
         if keyword in title:
             sendSlackWebhook("Keyword found in email title: " + title, webhook_url)
-
+```
 
 For more detailed usage instructions and available options, please refer to the [documentation](./documentation.md).
