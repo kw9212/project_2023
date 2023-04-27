@@ -15,12 +15,7 @@ Overview
 
 This idea came from the challenge of having to sort through many emails every day to find the important ones. Gmail already has a labeling function that classifies emails based on specific email addresses as filters. This project aims to create a function that sends notifications based on keywords using slack and smartphones. There is also potential to expand this project to find information in other ways besides just keywords.
 
-Installing
-----------
 
-```python
-    pip install project_progress
-```
 Dependencies
 ------------
 
@@ -28,16 +23,60 @@ Dependencies
 
 Usage
 -----
+
+### Quick Start
+
+1. Install the package:
+
 ```python
 
-    from project_progress import read_email_titles, sendSlackWebhook
+pip install project_progress
 
-    email_titles = read_email_titles()
-    keyword = "important"
-
-    for title in email_titles:
-        if keyword in title:
-            sendSlackWebhook("Keyword found in email title: " + title, webhook_url)
 ```
 
+2. Set up your Slack webhook URL. Follow these [instructions](./documentation.md) to create a Slack webhook URL.
+
+3. Create a Python script and import the required functions:
+
+```python
+
+from project_progress import read_email_titles, sendSlackWebhook
+
+```
+
+4. Use the functions to read email titles and send Slack notifications based on specific keywords:
+
+```python
+email_titles = read_email_titles()
+keyword = "important"
+
+for title in email_titles:
+    if keyword in title:
+        sendSlackWebhook("Keyword found in email title: " + title, webhook_url)
+```
+
+### Lint/Test
+To run linting and tests, you need to have the following tools installed:
+
+Flake8 for linting
+pytest for testing
+Install them using pip:
+
+```python
+pip install flake8 pytest
+```
+
+### Linting
+To lint your code, run the following command in your project directory:
+
+```python
+flake8
+```
+
+### Testing
+To run tests, execute the following command in your project directory:
+
+```python
+pytest
+```
 For more detailed usage instructions and available options, please refer to the [documentation](./documentation.md).
