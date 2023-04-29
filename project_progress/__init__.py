@@ -13,4 +13,4 @@ from .reading_email_title import *
 from .send_notification import *
 from .slack_bot import *
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
