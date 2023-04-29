@@ -11,7 +11,7 @@ name = "project_2023"
 authors = [{name = "Your Name", email = "Your_Email@gmail.com"}]
 description="An example python project"
 readme = "README.md"
-version = "0.1.0"
+version = "0.1.2"
 requires-python = ">=3.7"
 
 dependencies = []
