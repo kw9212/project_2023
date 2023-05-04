@@ -15,7 +15,7 @@ from recommonmark.transform import AutoStructify
 project = 'Email Keyword Notifier'
 copyright = '2023, KeunWoo'
 author = 'KeunWoo'
-release = '0.1.0'
+release = '0.1.2'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -44,7 +44,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 html_theme = 'sphinx_rtd_theme'
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
-sys.path.append(os.path.join(os.path.dirname(__name__), '..'))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 
 def setup(app):
